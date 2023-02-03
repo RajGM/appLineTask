@@ -1,7 +1,7 @@
 import styles from '../styles/Home.module.css'
 import ImageUploader from '@components/ImageUploader';
 import ImageFeed from '@components/ImageFeed';
-import { firestore} from '@lib/firebase';
+import { firestore } from '@lib/firebase';
 
 import { useState } from 'react';
 
@@ -11,7 +11,7 @@ import { useState } from 'react';
 export async function getServerSideProps(context) {
   const postsQuery = firestore
     .collectionGroup('listData')
-    
+
   const posts = (await postsQuery.get()).docs.map((doc) => doc.data());
   console.log(posts);
   return {
@@ -26,7 +26,14 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       <ImageUploader />
-      <ImageFeed posts={posts}/>
+      <ImageFeed posts={posts} />
+
     </div>
   )
 }
+
+/*
+
+<ImageFeed posts={imgPost} />
+*/
+
